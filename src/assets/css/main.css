@@ -24,6 +24,8 @@ body, article, aside, blockquote, body, button, code, dd, details, div, dl, dt, 
 .main{
 	padding: 0 15px;
 	padding-top: 50px;
+	-webkit-transition: margin 0.2s ease-in;
+    transition: margin 0.2s ease-in;
 }
 
 

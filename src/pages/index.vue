@@ -42,7 +42,7 @@
 			    <el-table-column prop="name" label="error" width="180"></el-table-column>
 			    <el-table-column prop="useragent" label="user-agent" show-overflow-tooltip width="240"></el-table-column>
 			    <el-table-column label="详细">
-			    	<template scope="scope">
+			    	<template slot-scope="scope">
 				        <el-button size="small" @click="queryDetail(scope.$index, scope.row)">编辑</el-button>
 				    </template>
 			    </el-table-column>
