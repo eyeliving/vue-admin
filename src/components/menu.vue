@@ -136,7 +136,7 @@ export default {
           ]},
         {
           name: '测试',
-          children: [{id: 5, name: '测试1', url: '/pagedemo3'}]
+          children: [{id: 5, name: '测试1', url: '/pagedemo3'}, {id: 6, name: '首页', url: '/'}]
         }]
     }
   },
@@ -212,72 +212,3 @@ export default {
   }
 }
 </script>
-
-
-<style>
-.childs-menu-status-open>.viewFramework-product-navbar {
-	width: 360px!important;
-}
-.childs-menu-status-open>.viewFramework-product-navbar-collapse{
-	left: 340px!important;
-}
-.childs-menu-status-closed>.viewFramework-product-navbar-collapse{
-	left: 180px!important;
-}
-
-.childs-menu-status-open .icon-collapse-left {
-    display: inline;
-}
-.childs-menu-status-closed  .icon-collapse-left {
-    display: none;
-}
-.childs-menu-status-closed .icon-collapse-right {
-    display: inline;
-}
-.childs-menu-status-open .icon-collapse-right {
-    display: none;
-}
-
-.childs-menu-status-open .viewFramework-product-navbar-collapse .product-navbar-collapse-bg{
-	right: 0;
-    left: auto;
-    border-bottom: 9px solid transparent;
-    border-left: none;
-    border-right: 13px solid #f7f7f7;
-    border-top: 9px solid transparent;
-}
-.childs-menu-status-open .viewFramework-product-navbar-collapse:hover .product-navbar-collapse-bg {
-    border-bottom: 8px solid transparent;
-    border-left: none;
-    border-right: 20px solid #f7f7f7;
-    border-top: 8px solid transparent;
-}
-.viewFramework-product-navbar-collapse .product-navbar-collapse>span {
-    font-size: 15px;
-    line-height: 50px;
-    vertical-align: text-top;
-    color: #546478;
-}
-
-
-.viewFramework-product-navbar-collapse .product-navbar-collapse-bg {
-    width: 0;
-    height: 50px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-bottom: 9px solid transparent;
-    border-left: 13px solid #D9DEE4;
-    border-top: 9px solid transparent;
-    -o-transition: all 0.1s ease,0.1s ease;
-    -ms-transition: all 0.1s ease,0.1s ease;
-    -moz-transition: all 0.1s ease,0.1s ease;
-    -webkit-transition: all 0.1s ease,0.1s ease;
-}
-
-.childs-menu-status-closed .viewFramework-product-navbar-collapse:hover .product-navbar-collapse-bg {
-    border-bottom: 8px solid transparent;
-    border-left: 20px solid #D9DEE4;
-    border-top: 8px solid transparent;
-}
-</style>

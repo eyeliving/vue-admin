@@ -12,6 +12,9 @@ Vue.config.productionTip = false
 
 require('./assets/css/main.css')
 
+// 阿里icon，后续根据需要换成自己的
+require('./assets/css/icon.css')
+
 Vue.use(ElementUI)
 
 /* eslint-disable no-new */

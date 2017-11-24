@@ -1,11 +1,12 @@
 <template>
     <div id="app">
+    		<pageheader></pageheader>
     		<slidemenu @menustatus="menu_status"></slidemenu>
           
           
             
             <div class="main" :class="{'menu-normal-content':slide_menu_status===0,'menu-lg-content':slide_menu_status===1,'menu-sm-content':slide_menu_status===2}">
-              <slidetaps></slidetaps>
+              <!--<slidetaps></slidetaps>-->
               <router-view class="page-tabs-content fadeIn"></router-view>
             </div>
        
@@ -16,7 +17,7 @@
 <script>
 import pageheader from './components/header'
 import slidemenu from './components/menu'
-import slidetaps from './components/slidetaps'
+// import slidetaps from './components/slidetaps'
 export default {
   data () {
     return {
@@ -24,7 +25,7 @@ export default {
     }
   },
   components: {
-    pageheader, slidemenu, slidetaps
+    pageheader, slidemenu
   },
   methods: {
     menu_status (status) {
