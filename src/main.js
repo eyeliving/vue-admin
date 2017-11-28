@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import './diy_router'
 
 // 第三方 饿了么UI
 import ElementUI from 'element-ui'

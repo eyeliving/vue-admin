@@ -1,12 +1,12 @@
 <template>
     <div id="app">
     		<pageheader></pageheader>
-    		<slidemenu @menustatus="menu_status"></slidemenu>
+    		<slidemenu @menustatus="menu_is_small" @menuchildstatus="menu_child_status"></slidemenu>
           
           
             
-            <div class="main" :class="{'menu-normal-content':slide_menu_status===0,'menu-lg-content':slide_menu_status===1,'menu-sm-content':slide_menu_status===2}">
-              <!--<slidetaps></slidetaps>-->
+            <div class="main" :style="{ marginLeft: myMarginLeft + 'px' }">
+              <!--<slidetaps>:class="{'menu-normal-content':!menuIsSmall,'menu-lg-content':menuIsSmall&&childMenuStatus,'menu-sm-content':menuIsSmall}"</slidetaps>-->
               <router-view class="page-tabs-content fadeIn"></router-view>
             </div>
        
@@ -21,15 +21,36 @@ import slidemenu from './components/menu'
 export default {
   data () {
     return {
-      slide_menu_status: 0 // 0：一级菜单正常展示  1：分出菜单正常展示  2：一级菜单缩放展示
+      menuIsSmall: false, // 菜单状态：{true}一级菜单缩放展示,{false}一级菜单正常展示,{默认}false
+      childMenuStatus: false // 分出菜单状态：{true}分出菜单正常显示,{false}分出菜单缩放展示,{默认}false
     }
   },
   components: {
     pageheader, slidemenu
   },
+  computed: {
+    myMarginLeft () {
+      if (this.menuIsSmall) {
+        if (this.childMenuStatus) {
+          return 230
+        } else {
+          return 50
+        }
+      } else {
+        if (this.childMenuStatus) {
+          return 360
+        } else {
+          return 180
+        }
+      }
+    }
+  },
   methods: {
-    menu_status (status) {
-      this.slide_menu_status = status
+    menu_is_small (status) {
+      this.menuIsSmall = status
+    },
+    menu_child_status (status) {
+      this.childMenuStatus = status
     }
   }
 }

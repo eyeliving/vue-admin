@@ -30,6 +30,22 @@ body, article, aside, blockquote, body, button, code, dd, details, div, dl, dt, 
 
 
 /**menu start**/
+.sidebar-inner .sidebar-fold {
+    height: 30px;
+    width: 100%;
+    background: #4A5064;
+    color: #aeb9c2;
+    text-align: center;
+    line-height: 30px !important;
+    font-size: 12px;
+    user-select: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+.menu-small .isidebar {
+    width: 50px;
+}
 .menu-normal-content{
 	margin-left: 180px;
 }
@@ -42,13 +58,15 @@ body, article, aside, blockquote, body, button, code, dd, details, div, dl, dt, 
 .isidebar {
 	font-size: 14px;
 	width: 180px;
+	height: 100%;
 	display: block;
 	position: fixed;
 	top: 50px;
 	bottom: 0px;
 	background-color: #293038;
-	z-index: 102;
+	z-index: 100;
 	overflow-x: hidden;
+	transition-duration: .2s;
 }
 
 .isidebar.sidebar-content {
@@ -330,13 +348,22 @@ body, article, aside, blockquote, body, button, code, dd, details, div, dl, dt, 
 }
 
 .childs-menu-status-open>.viewFramework-product-navbar {
-	width: 360px!important;
+	width: 360px;
 }
 .childs-menu-status-open>.viewFramework-product-navbar-collapse{
-	left: 340px!important;
+	left: 340px;
 }
 .childs-menu-status-closed>.viewFramework-product-navbar-collapse{
-	left: 180px!important;
+	left: 180px;
+}
+.menu-small .childs-menu-status-closed>.viewFramework-product-navbar-collapse{
+	left: 50px!important;
+}
+.menu-small .childs-menu-status-open>.viewFramework-product-navbar {
+	width: 230px!important;
+}
+.menu-small .childs-menu-status-open>.viewFramework-product-navbar-collapse{
+	left: 210px!important;
 }
 
 .childs-menu-status-open .icon-collapse-left {

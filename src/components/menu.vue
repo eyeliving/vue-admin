@@ -1,9 +1,10 @@
 <template>
-<div>
+<div :class="{'menu-small':menuIsSmall}">
     <div class="isidebar">
     	<div class="isidebar-content">
     		<div class="sidebar-inner" id="isidebar_items">
     			
+    			<div class="sidebar-fold icon-unfold" @click="menuStatusChange()"></div>
     			
     			<div class="sidebar-nav" v-for="(item,$index) in menuData" :class="{'sidebar-nav-active':$index == categoryUnfoldIndex}">
     				<!--一级菜单-->
@@ -103,6 +104,8 @@
 export default {
   data () {
     return {
+      menuIsSmall: false, // 菜单状态：{true}一级菜单正常展示,{false}一级菜单缩放展示
+      childMenuStatus: false, // 分出菜单状态：{true}分出菜单正常显示,{false}分出菜单缩放展示,{默认}false
       categoryUnfoldIndex: -1, // 顶级菜单选中ID
       categoryHeight: 0,
       currentProductId: '', // 当前子菜单选中ID
@@ -140,7 +143,22 @@ export default {
         }]
     }
   },
+  mounted: function () {
+    this.init()
+  },
   methods: {
+    init () {
+      let menustatus = JSON.parse(localStorage.getItem('menustatus'))
+      if (typeof menustatus !== 'undefined') {
+        this.menuIsSmall = menustatus
+        this.$emit('menustatus', menustatus)
+      }
+    },
+    menuStatusChange () {
+      this.menuIsSmall = !this.menuIsSmall
+      this.$emit('menustatus', this.menuIsSmall)
+      localStorage.setItem('menustatus', this.menuIsSmall)
+    },
     openMenu ($event, $index) {
       if (this.categoryUnfoldIndex === $index) {
         this.categoryUnfoldIndex = -1
@@ -156,13 +174,14 @@ export default {
         this.childMenuData = child.children
         this.childMenuData_title = child.name
         this.childsMenuDisabled = false
-        this.$emit('menustatus', 1)
+        this.childMenuStatus = true
       } else {
         this.childMenuData = []
         this.childMenuData_title = ''
-        this.$emit('menustatus', 0)
+        this.childMenuStatus = false
         child.url && this.$router.push({ path: child.url })
       }
+      this.$emit('menuchildstatus', this.childMenuStatus)
     },
     pageFns ($index, item) {
       // 无限级别菜单操作
@@ -188,10 +207,11 @@ export default {
     childNavBar () {
       this.childsMenuDisabled = !this.childsMenuDisabled
       if (this.childsMenuDisabled) {
-        this.$emit('menustatus', 0)
+        this.menuchildstatus = false
       } else {
-        this.$emit('menustatus', 1)
+        this.menuchildstatus = true
       }
+      this.$emit('menuchildstatus', this.menuchildstatus)
     },
     setCategoryHeight (target, length) {
       if (!length) {
