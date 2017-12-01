@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store'
 import { MessageBox } from 'element-ui'
 
 const service = axios.create({
@@ -6,8 +7,12 @@ const service = axios.create({
   //timeout: 5000 // 请求超时时间
 })
 
-axios.interceptors.request.use((config) => {
+service.interceptors.request.use((config) => {
   config.headers['X-Requested-With'] = 'XMLHttpRequest'
+  console.log('token========'+store.getters.token)
+  if(store.getters.token) {
+  	config.headers.Authorization = store.getters.token
+  }
   return config
 })
 

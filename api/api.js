@@ -17,6 +17,8 @@ router.post('/api/user/login', function(req, res, next) {
 	
 	if(username === 'admin' && password === 'admin') {
 		return res.json({ code: 0, token: 'asdastgg131sdfsgytyrear324gfg' })
+	}else if(username === 'admin1' && password === 'admin1') {
+		return res.json({ code: 0, token: 'asdastgg131sdfsgytyrear324gdd' })
 	}else{
 		return res.json({ code: 1, msg: '用户名或密码错误' })
 	}
@@ -68,8 +70,25 @@ router.post('/api/user/info', function(req, res, next) {
 //	{ name: '测试', children: [{ id: 5, name: '测试1', path: '/pagedemo3', component: '/demo/pagedemo3' }] }
 //];
 
+	console.log('token==='+req.headers.authorization || req.headers['authorization'])
+	
+	const token = req.headers.authorization || req.headers['authorization']
+	if(!token){
+		return res.json({ code: -1, msg: '请登录'});
+	}
+	if(token=='asdastgg131sdfsgytyrear324gfg'){
+		var userMap = [ { name: '大数据（数加）', children: [
+									{ id: 1, name: '机器学习', path: 'pagedemo0', component: 'demo/pagedemo' }, 
+									{ id: 2, name: '数据集成', path: 'pagedemo1', component: 'demo/pagedemo1'}, 
+									{ id: 8, name: 'DataWorks', path: 'pagedemo2', component: 'demo/pagedemo2'}
+								]}]
+		return res.json({ code: 0, maps: userMap});
+		
+	}else{
+	
 
-var userMap = [
+
+userMap = [
 		{ name: '大数据（数加）', children: [
 								{ id: 1, name: '机器学习', path: 'pagedemo0', component: 'demo/pagedemo' }, 
 								{ id: 2, name: '数据集成', path: 'pagedemo1', component: 'demo/pagedemo1'}, 
@@ -111,7 +130,8 @@ var userMap = [
 ];
 
 
-	return res.json({ code: 0, maps: userMap});
+		return res.json({ code: 0, maps: userMap});
+	}
 
 });
 
