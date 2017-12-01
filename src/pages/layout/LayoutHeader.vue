@@ -236,16 +236,19 @@
 			</div>
 			<div class="topbar-info topbar-right">
 				<div class="topbar topbar-notice">
-					<a href="#"><span class="topbar-btn-notice-icon icon-bell"></span></a>
+					<a><span class="topbar-btn-notice-icon icon-bell"></span></a>
 				</div>
 				<div class="topbar topbar-workorder">
-					<a href="#"><span class="">工单</span></a>
+					<a><span class="">工单</span></a>
 				</div>
 				<div class="topbar topbar-workorder">
-					<a href="#"><span class="">支持</span></a>
+					<a><span class="">支持</span></a>
 				</div>
 				<div class="topbar topbar-user">
-					<a href="#"><span class="">dev@aliyun.com</span></a>
+					<a><span class="">dev@aliyun.com</span></a>
+				</div>
+				<div class="topbar topbar-user">
+					<a @click="logout"><span class="">退出</span></a>
 				</div>
 			</div>
 	</div>
@@ -264,6 +267,18 @@
         recentHistoryList = recentHistoryList ? JSON.parse(recentHistoryList) : []
         this.serviceIsShow = !this.serviceIsShow
         this.recentHistoryList = recentHistoryList.reverse()
+      },
+      logout () {
+      	// 前端退出，后续等后端服务有此接口之后，改成后端退出
+      	this.$confirm('确定要退出吗?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$store.dispatch('FedLogOut').then((r) => {
+          	this.$router.replace({ path: '/login' })
+	      })
+        })
       }
     }
   }
@@ -315,6 +330,7 @@
     color: #fff;
     font-size: 14px;
     text-align: center;
+    cursor: pointer;
 }
 .header .topbar{
 	display: inline-block;
